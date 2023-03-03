@@ -9,4 +9,5 @@ nav:
     - Routing: 'concepts/04-routing.md'
     - Logging: 'concepts/05-logging.md'
     - Configuration: 'concepts/06-configuration.md'
+    - Database: 'concepts/07-database.md'
 theme: readthedocs

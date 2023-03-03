@@ -20,7 +20,8 @@ var config struct {
 		Password string `env:"PASSWORD" env-default:"" env-description:"main database password"`
 	} `env-prefix:"DATABASE_"`
 	Logging struct {
-		Level string `env:"LEVEL" env-default:"info" env-description:"logger level (trace, debug, info, warn, error, fatal, panic)"`
+		Level         string `env:"LEVEL" env-default:"info" env-description:"logger level (trace, debug, info, warn, error, fatal, panic)"`
+		DatabaseLevel string `env:"DB_LEVEL" env-default:"info" env-description:"database logs level (trace, debug, info, warn, error, fatal, panic)"`
 	} `env-prefix:"LOGGING_"`
 	Cloudwatch struct {
 		Enabled bool   `env:"ENABLED" env-default:"false" env-description:"cloudwatch logging exporter (enabled in clowder)"`

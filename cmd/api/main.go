@@ -2,6 +2,7 @@ package main
 
 import (
 	"consoledot-go-template/internal/config"
+	"consoledot-go-template/internal/db"
 	"consoledot-go-template/internal/logging"
 	"consoledot-go-template/internal/routes"
 	"context"
@@ -16,11 +17,20 @@ import (
 )
 
 func main() {
+	mainCtx := context.Background()
 	config.Initialize("api.env")
 
 	logger, closeFn := logging.InitializeLogger()
 	defer closeFn()
 	log.Logger = logger
+
+	// initialize the rest
+	err := db.Initialize(mainCtx, "public")
+	if err != nil {
+		log.Fatal().Err(err).Msg("Error initializing database")
+		panic(err)
+	}
+	defer db.Close()
 
 	router := routes.RootRouter()
 	apiServer := http.Server{
